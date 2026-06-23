@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/SFPRODISPLAYREGULAR.otf') format('opentype'); /* Apne exact file ka naam yahan dalein */
+  font-weight: 400; /* Regular ke liye */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/SFPRODISPLAYBOLD.otf') format('opentype'); /* Bold file ka naam */
+  font-weight: 700; /* Bold ke liye */
+  font-style: normal;
+  
+}
