@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { KeyRound, Loader2 } from 'lucide-react';
-import axios from 'axios'; // 1. सबसे पहले Axios को इम्पोर्ट करो
+import axios from 'axios';
+import { apiUrl } from '../api';
 
 const Code = () => {
   const [code, setCode] = useState('');
@@ -16,7 +17,7 @@ const Code = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('/api/user/login', 
+      const response = await axios.post(apiUrl('/user/login'), 
         { code }, 
         { withCredentials: true } 
       );

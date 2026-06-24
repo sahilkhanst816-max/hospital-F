@@ -4,6 +4,7 @@ import { Brain, Heart, Dna, Activity, ShieldCheck, Bone, Info } from 'lucide-rea
 import HealthScore from './HealthScore';
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { apiUrl } from '../../api';
 const StepGoogle = () => {
     const [googleSteps, setGoogleSteps] = useState(0);
     const [isConnecting, setIsConnecting] = useState(false);
@@ -15,7 +16,7 @@ const StepGoogle = () => {
         try {
             e.preventDefault();
             setIsConnecting(true);
-            const response = await fetch('/api/google/auth-url');
+            const response = await fetch(apiUrl('/google/auth-url'));
             const data = await response.json();
 
             if (data.url) {
@@ -31,13 +32,12 @@ const StepGoogle = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
 
-        // 🔥 FIX: Check karega ki code hai aur pehle fetch nahi hua hai
         if (code && !hasFetched.current) {
-            hasFetched.current = true; // Lock kar diya
+            hasFetched.current = true;
 
             const fetchStepsFromGoogle = async () => {
                 try {
-                    const response = await fetch('/api/google/get-steps', {
+                    const response = await fetch(apiUrl('/google/get-steps'), {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ code })
@@ -47,7 +47,6 @@ const StepGoogle = () => {
 
                     if (data.success) {
                         setGoogleSteps(data.steps);
-                        // URL clean karo
                         window.history.replaceState({}, document.title, window.location.pathname);
                     } else {
                         console.error("Backend se error aaya:", data.message);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router'; // useLocation ऐड किया है
+import { Route, Routes, useNavigate, useLocation } from 'react-router';
 import Home from './page/home';
 import Dashboard from './page/Dashboard';
 import Itam from './pate/Sidebar';
@@ -10,6 +10,7 @@ import Chatbut from './page/chatbut';
 const App = () => {
 
   const navigate = useNavigate();
+  const location = useLocation();
   const token = localStorage.getItem('token');
   const user = localStorage.getItem("userData");
 
