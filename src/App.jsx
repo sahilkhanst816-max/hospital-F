@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router';
+import { Navigate, Route, Routes, useNavigate, useLocation } from 'react-router';
 import Home from './page/home';
 import Dashboard from './page/Dashboard';
 import Itam from './pate/Sidebar';
@@ -28,6 +28,7 @@ const App = () => {
       {showSidebar && <Itam />}
       <div className="flex-1 w-full">
         <Routes>
+          <Route path="/" element={<Navigate to={token && user ? '/about' : '/login'} replace />} />
           <Route path="/Dashboard/Clinicalhistory" element={<Dashboard />} >
             <Route path="/Dashboard/Clinicalhistory" element={<StepGoogle />} />
           </Route>
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/about" element={<Home />} />
           <Route path="/login" element={<Code />} />
           <Route path="/book" element={<Education />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>
       </div>

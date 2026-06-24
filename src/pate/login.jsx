@@ -27,7 +27,7 @@ const Code = () => {
       localStorage.setItem('token', data.token); 
       localStorage.setItem('userData', JSON.stringify(data.user)); 
       
-      navigate('/'); 
+      navigate('/about'); 
 
     } catch (err) {
       if (err.response) {
